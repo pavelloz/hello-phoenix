@@ -1,6 +1,31 @@
 defmodule HelloWeb.Router do
   use HelloWeb, :router
 
+<<<<<<<<<<<<<<  ✨ Codeium Command 🌟 >>>>>>>>>>>>>>>>
++  # Pipeline for the browser requests
++  #
++  # The `:browser` pipeline is used in the router to match the
++  # request to the appropriate pipeline for processing. It sets up
++  # a pipeline with common browser-related plugins.
++  #
++  # The `:accepts` plug is responsible for setting the request format
++  # to HTML, as we only handle HTML in the browser.
++  #
++  # The `:fetch_session` plug is responsible for storing session
++  # data in the cookie and retrieving from it when a request is made.
++  #
++  # `:fetch_live_flash` plug is responsible for sending and
++  # fetching flash messages from the session.
++  #
++  # `:put_root_layout` plug is responsible for setting the layout
++  # to be used in the browser. The layout is set to `root.html.heex`
++  # in the `HelloWeb.Layouts` module.
++  #
++  # `:protect_from_forgery` plug is responsible for protecting the
++  # application against cross-site request forgery (CSRF) attacks.
++  #
++  # `:put_secure_browser_headers` plug is responsible for setting
++  # some basic security headers.
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -9,6 +34,7 @@ defmodule HelloWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
+<<<<<<<  87917e86-1e6b-47b1-a295-54ac1e4eba01  >>>>>>>
 
   pipeline :api do
     plug :accepts, ["json"]
