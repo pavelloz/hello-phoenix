@@ -22,7 +22,7 @@ defmodule HelloWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :hello,
-    gzip: Mix.env() == :prod,
+    gzip: true,
     only: HelloWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
