@@ -12,6 +12,9 @@ build:
 	mix deps.get
 	mix compile
 
+deploy: build
+	mix phx.digest
+	git push gigalixir
 
 
 # Code quality

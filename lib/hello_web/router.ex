@@ -63,6 +63,8 @@ defmodule HelloWeb.Router do
 
       live_dashboard "/dashboard", metrics: HelloWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+
+      forward "/admin", Crawly.API.Router
     end
   end
 end
