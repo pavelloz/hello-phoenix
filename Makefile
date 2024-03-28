@@ -3,59 +3,55 @@
 # Project-wide
 
 setup:
-    make build \
-    && make db.setup
+	make build && make db.setup
 
 build:
-    mix do deps.get + compile
+	mix do deps.get + compile
 
 run:
-    mix phx.server
+	mix phx.server
 
 # Code quality
 
 lint:
-    mix format --check-formatted
+	mix credo && mix format --check-formatted
 
 fmt:
-    mix format
+	mix format
 
 test:
-    mix test
+	mix test
 
 test.watch:
-    mix test.watch
+	mix test.watch
 
 # Database
 
 db.setup:
-    make db.create \
-    && make db.migrate \
-    && make db.seed
+	make db.create && make db.migrate && make db.seed
 
 db.create:
-    mix ecto.create
+	mix ecto.create
 
 db.migrate:
-    mix ecto.migrate
+	mix ecto.migrate
 
 db.seed:
-    mix run priv/repo/seeds.exs
+	mix run priv/repo/seeds.exs
 
 db.drop:
-    mix ecto.drop
+	mix ecto.drop
 
 db.reset:
-    make db.drop \
-    && make db.setup
+	make db.drop && make db.setup
 
 # REPL
 
 repl:
-    iex -S mix
+	iex -S mix
 
 repl.run:
-    iex -S mix phx.server
+	iex -S mix phx.server
 
 repl.test:
-    iex -S mix test.watch
+	iex -S mix test.watch
