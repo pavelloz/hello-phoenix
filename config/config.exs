@@ -62,9 +62,7 @@ config :logger, :console,
 config :phoenix,
   static_compressors: [
     # Pick all that you want to use
-    PhoenixBakery.Gzip,
-    PhoenixBakery.Brotli,
-    PhoenixBakery.Zstd
+    PhoenixBakery.Gzip
   ],
   json_library: Jason
 
