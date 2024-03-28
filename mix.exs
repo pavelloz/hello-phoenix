@@ -53,7 +53,8 @@ defmodule Hello.MixProject do
       {:swoosh, "~> 1.5"},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 1.0"},
-      {:telemetry_poller, "~> 1.0"}
+      {:telemetry_poller, "~> 1.0"},
+      {:phoenix_bakery, "~> 0.1.0", runtime: false}
     ]
   end
 

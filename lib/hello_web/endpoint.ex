@@ -22,7 +22,9 @@ defmodule HelloWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :hello,
+    encodings: [{"zstd", ".zstd"}],
     gzip: true,
+    brotli: true,
     only: HelloWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
