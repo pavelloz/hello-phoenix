@@ -6,7 +6,7 @@ setup:
 	make build && make db.setup
 
 build:
-	mix do deps.get + compile
+	mix deps.get && mix compile
 
 run:
 	mix phx.server

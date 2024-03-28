@@ -1,33 +1,27 @@
+name: ci
 on: push
 
 jobs:
   test:
-    # services:
-    #     # Label used to access the service container
-    #     postgres:
-    #       # Docker Hub image
-    #       image: postgres
-    #       # Provide the password for postgres
-    #       env:
-    #         POSTGRES_PASSWORD: postgres
-    #       # Set health checks to wait until postgres has started
-    #       options: >-
-    #         --health-cmd pg_isready
-    #         --health-interval 10s
-    #         --health-timeout 5s
-    #         --health-retries 5
-    #       ports:
-    #         # Maps tcp port 5432 on service container to the host
-    #         - 5432:5432
-
     runs-on: ubuntu-latest
-    name: Elixir
+    strategy:
+      matrix:
+        otp: [26]
+        elixir: ["1.16"]
     steps:
       - uses: actions/checkout@v4
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: 26.2.3
-          elixir-version: 1.16.2
-      # - run: make setup
+          elixir-version: ${{matrix.elixir}}
+          otp-version: ${{matrix.otp}}
+      - uses: actions/cache@v4
+        id: mix-cache # id to use in retrieve action
+        with:
+          path: |
+            _build
+            deps
+          key: test-cache-v0-${{matrix.elixir}}-${{matrix.otp}}-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+      - if: steps.mix-cache.outputs.cache-hit != 'true'
+        run: mix do deps.get, deps.compile
       - run: make lint
-      - run: make test
+      - run: mix test
