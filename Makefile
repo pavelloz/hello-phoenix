@@ -2,14 +2,17 @@
 
 # Project-wide
 
-setup:
-	make build && make db.setup
-
-build:
-	mix deps.get && mix compile
-
-run:
+run: setup
 	mix phx.server
+
+setup:
+	mix setup
+
+build: 
+	mix deps.get
+	mix compile
+
+
 
 # Code quality
 
