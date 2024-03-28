@@ -2,18 +2,14 @@
 
 # Project-wide
 
-run: setup
+run:
 	mix phx.server
 
 setup:
 	mix setup
 
-build: 
-	mix deps.get
-	mix compile
-
-deploy: build
-	mix phx.digest
+deploy:
+	mix build
 	git push gigalixir
 
 
