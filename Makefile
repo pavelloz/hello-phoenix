@@ -9,11 +9,10 @@ setup:
 	mix setup
 
 deploy:
+	@git diff-index --quiet HEAD -- || (echo "Error: There are uncommited changes in git, commit or stash them before continuing" && false)
 	mix build
 	git push gigalixir
 
-
-# Code quality
 
 lint:
 	mix credo && mix format --check-formatted
