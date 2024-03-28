@@ -72,7 +72,7 @@ defmodule Hello.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       build: ["deps.get", "compile", "assets.build", "assets.deploy"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind hello", "esbuild hello"],
+      "assets.build": ["tailwind hello --minify", "esbuild hello --minify"],
       "assets.deploy": [
         "tailwind hello --minify",
         "esbuild hello --minify",
